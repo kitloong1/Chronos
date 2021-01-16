@@ -6,4 +6,8 @@ build
 coverage
 __tests__/**/__snapshots__
 release-builds
+<<<<<<< HEAD
 !.env
+=======
+.env
+>>>>>>> 74e1303cd1efd5673790ff3b863672c22528c294
