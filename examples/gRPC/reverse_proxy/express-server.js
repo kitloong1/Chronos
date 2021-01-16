@@ -5,6 +5,9 @@ const path = require('path');
 const app = express();
 const client = require('./client.js');
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname)));
 
 app.get('/', (req, res, next) => {
@@ -19,6 +22,17 @@ app.post('/addBook', (req, res, next) => {
 
 app.post('/createOrder', (req, res, next) => {
     //generate order entry for gRPC call
+    console.log(req.body)
+    const order = {
+      customerID: req.body.customerID,
+      bookID: req.body.bookID,
+      purchaseDate: req.body.purchaseDate,
+      deliveryDate: req.body.deliveryDate,
+    }
+    client.addOrder(order, (err, data) => {
+      if (err) console.log(err);
+      res.sendStatus(200);
+    })
     // call gRPC i.e. gRPCCreateOrder(order entry)
 })
 //client.createOrder({Name: matt})

@@ -15,5 +15,4 @@ const client = new ProxyToOrderService(
     "localhost:30043",
     grpc.credentials.createInsecure()
 );
-
 module.exports = client;
